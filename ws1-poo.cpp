@@ -1,63 +1,62 @@
 #include <iostream>
 #include <cmath>
 
-typedef struct Circle {
-    //Position of the center
-    double x;
-    double y;
-
-    double r; // radius 
+class Circle {
+    double x, y; // Position of the center
+    double r; // Radius
+public:
+    Circle(double x, double y, double r) : x(x), y(y), r(r) {}
+    int get_x() {
+        return x;
+    }
+    int get_y() {
+        return y;
+    }
+    void set_pos(double x, double y) {
+        this->x = x;
+        this->y = y;
+    }
+    double perimeter() {
+        return 2 * M_PI * r;
+    }
     
-} Circle;
+};
 
-
-// Set the position of the center
-void set_pos(Circle *c, double x, double y) {
-    c->x = x;
-    c->y = y;
-}
-
-// Calculate the perimeter of the circle
-double perimeter(Circle c) {
-    return 2 * M_PI * c.r;
-}
 
 //TODO: Add a method to calculate the area of the circle
 
-
-typedef struct Rectangle
-{
-    //Position of the top left corner
-    double x;
-    double y;
-
-    double w; //width
-    double h; //height
-
-} Rectangle;
-
 // TODO: Add a method to calculate the area of the rectangle
+class Rectangle {
+    double x, y; // Position of the top left corner
+    double w, h; // Width and height
+public:
+    Rectangle(double x, double y, double w, double h) : x(x), y(y), w(w), h(h) {}
+    int get_x() {
+        return x;
+    }
+    int get_y() {
+        return y;
+    }
 
-// Set the position of the top left corner
-void set_pos(Rectangle *r, double x, double y) {
-    r->x = x;
-    r->y = y;
-}
-// Calculate the perimeter of the rectangle
-double perimeter(Rectangle r) {
-    return 2 * (r.w + r.h);
-}
+    void set_pos(double x, double y) {
+        this->x = x;
+        this->y = y;
+    }
+    double perimeter() {
+        return 2 * (w + h);
+    }
+};
+
 
 int main() {
-    Circle c{0, 0, 1};
-    std::cout << perimeter(c) << std::endl;
-    set_pos(&c, 1, 1);
-    std::cout  << "Coordinates of the center: (" << c.x << ", " << c.y << ")" << std::endl;
-    
+    Circle c(0, 0, 1);
+    std::cout << c.perimeter() << std::endl;
+    c.set_pos(1, 1);
+    std::cout  << "Coordinates of the center: (" << c.get_x() << ", " << c.get_y() << ")" << std::endl;
 
-    Rectangle r{0, 0, 1, 2};
-    std::cout << perimeter(r) << std::endl;
-    set_pos(&r, -1, -1);
-    std::cout  << "Coordinates of the top left corner: (" << r.x << ", " << r.y << ")" << std::endl;
+    Rectangle r(0, 0, 1, 2);
+    std::cout << r.perimeter() << std::endl;
+    c.set_pos(-1, -1);
+    std::cout  << "Coordinates of the top left corner: (" << r.get_x() << ", " << r.get_y() << ")" << std::endl;
     return 0;
 }
